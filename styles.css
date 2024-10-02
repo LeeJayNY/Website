@@ -1,0 +1,166 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; 
+    color: #e0e0e0; 
+    line-height: 1.6;
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+}
+
+/* Header Styling */
+header {
+    background-color: #1f1f1f; 
+    padding: 20px 0;
+}
+
+.header-content {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+.initials {
+    font-size: 48px;
+    margin-left: 15px; 
+    color: #4CAF50; 
+}
+
+/* Small image styling for the header */
+.header-pic {
+    margin-right: 15px;
+    width: 60px; 
+    height: 60px; 
+    border-radius: 50%; 
+}
+/* Main Section Styling */
+main {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+    flex: 1; 
+}
+
+/* Left Column Styling */
+.left-column {
+    width: 40%;
+    background-color: #1f1f1f; 
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.left-column h2 {
+    font-size: 32px;
+    color: #4CAF50; 
+}
+
+.about-me {
+    margin-top: 20px;
+}
+
+.about-me h3 {
+    font-size: 24px;
+    border-bottom: 2px solid #4CAF50; 
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.about-me p {
+    font-size: 16px;
+    text-align: justify;
+}
+
+/* Profile Picture Styling */
+.profile-pic {
+    display: block;
+    margin: 20px auto; 
+    width: 250px; 
+    height: auto; 
+    border-radius: 10%; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
+}
+
+/* Right Column Styling */
+.right-column {
+    width: 55%; 
+    background-color: #1f1f1f; 
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.right-column h3 {
+    font-size: 24px;
+    border-bottom: 2px solid #4CAF50; 
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.right-column ul {
+    list-style-type: none;
+    margin: 10px 0;
+}
+
+.right-column ul li {
+    background-color: #333333; 
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+/* Links in Right Column */
+.right-column a {
+    color: #4CAF50; 
+    text-decoration: none;
+}
+
+.right-column a:hover {
+    text-decoration: underline; 
+}
+/* Socials Section Styling */
+.socials {
+    margin-top: 30px;
+}
+
+.socials h3 {
+    font-size: 24px;
+    border-bottom: 2px solid #4CAF50; /* Underline for "Socials" */
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+.social-icons {
+    display: flex; /* Display icons in a horizontal line */
+    justify-content: center; /* Center the icons */
+    align-items: center; /* Align vertically */
+}
+
+.social-icons a {
+    margin: 0 15px; /* Space between the icons */
+    transition: transform 0.3s ease-in-out; /* Smooth scaling effect */
+}
+
+.social-icon {
+    width: 40px; /* Set a standard width */
+    height: 40px; /* Set a standard height */
+    transition: transform 0.3s ease-in-out; /* Smooth hover effect */
+}
+
+.social-icons a:hover .social-icon {
+    transform: scale(1.2); /* Slightly enlarge on hover */
+}
+
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #1f1f1f; 
+    position: relative; 
+}
