@@ -1,0 +1,553 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Theme Variables */
+:root {
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --heading-color: #ffffff;
+    --link-color: #aaa;
+    --link-hover-color: #e0e0e0;
+    --border-color: #444;
+    --button-bg: #333;
+    --button-text: #e0e0e0;
+    --button-hover-bg: #555;
+    --initials-color: #ccc; /* Color for initials */
+}
+
+body.light-mode {
+    --bg-color: #f4f4f4;
+    --text-color: #333;
+    --heading-color: #000;
+    --link-color: #555;
+    --link-hover-color: #000;
+    --border-color: #ccc;
+    --button-bg: #e0e0e0;
+    --button-text: #333;
+    --button-hover-bg: #c7c7c7;
+    --initials-color: #555;
+}
+
+/* Hide default cursor and style custom one */
+body {
+    /* cursor: none; */ /* REMOVED: Hide the default cursor */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center content horizontally */
+    padding: 2rem; /* Keep padding */
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header {
+    width: 100%;
+    max-width: 600px; /* Max width for content */
+    margin-bottom: 2rem;
+    display: flex; /* Use flexbox for alignment */
+    justify-content: space-between; /* Space out nav and button */
+    align-items: center; /* Vertically align items */
+}
+
+nav {
+    display: flex;
+    justify-content: flex-start; /* Align nav links to the start */
+    gap: 1rem; /* Space between nav links */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+nav a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+nav a:hover,
+nav a:focus {
+    color: var(--link-hover-color);
+}
+
+main {
+    width: 100%;
+    max-width: 600px; /* Max width for content */
+    text-align: center; /* Center content within main */
+    flex-grow: 1; /* Allow main content to grow and push footer down */
+}
+
+.content-section {
+    /* Add padding or margin as needed */
+    margin-bottom: 2rem;
+}
+
+/* Styling for the about section to align image and text */
+/* #about.content-section { */ /* Renamed class for specificity */
+.about-layout {
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+    justify-content: center; /* Horizontally center the flex items */
+    gap: 2rem; /* Increased space */
+    text-align: left; /* Keep text left-aligned */
+    flex-wrap: wrap-reverse; /* Wrap picture below text on small screens */
+}
+
+.about-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Space between text, social links, dynamic info */
+    max-width: 400px; /* Constrain width to allow text wrapping without affecting layout */
+}
+
+/* Keep profile picture styles */
+.profile-picture {
+    width: 100px; /* Adjust size as needed */
+    height: 100px;
+    border-radius: 50%; /* Make it circular */
+    object-fit: cover; /* Prevent image distortion */
+    border: 2px solid var(--border-color); /* Optional border */
+    flex-shrink: 0; /* Prevent image from shrinking */
+    position: relative; /* Allow nudging with top/bottom/left/right */
+    top: -160px; /* Reset to a smaller value for readjustment */
+}
+
+.about-text {
+    /* No specific styles needed currently, acts as a container */
+}
+
+/* Ensure h1 within about-text has no top margin */
+.about-text h1 {
+    margin-top: 0;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: var(--heading-color);
+}
+
+p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.contact-info {
+    font-size: 0.9rem;
+    color: var(--link-color);
+    margin-bottom: 1rem; /* Add space before social links */
+}
+
+.contact-info span,
+.contact-info a {
+    margin-right: 0.5rem;
+}
+
+.contact-info a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+
+/* Style for section headings (initially hidden by inline style) */
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--heading-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+/* Add more styles for lists, etc., within sections as needed */
+
+footer {
+    width: 100%;
+    max-width: 600px; /* Match main content width */
+    /* margin-top: 4rem; */ /* Remove margin-top, flexbox handles spacing */
+    padding: 1rem 0; /* Add padding top and bottom */
+    border-top: 1px solid var(--border-color); /* Separator line */
+    text-align: center; /* Center footer text */
+    font-size: 0.8rem;
+    color: var(--link-color); /* Use dimmer text color */
+    margin-top: auto; /* Push footer to the bottom */
+}
+
+#custom-cursor {
+    position: fixed; /* Position relative to the viewport */
+    width: 15px;      /* Size of the circle */
+    height: 15px;
+    border: 1px solid var(--text-color); /* Use theme color for border */
+    border-radius: 50%; /* Makes it a circle */
+    pointer-events: none; /* Allows clicks to pass through */
+    z-index: 9999;       /* Ensure it's on top */
+    /* Offset slightly so the pointer tip is centered, not the top-left */
+    transform: translate(-50%, -50%);
+    /* Optional: Add a smooth transition */
+    transition: transform 0.1s ease-out; /* Adjust timing as needed */
+    opacity: 1; /* Start visible */
+    transition: transform 0.1s ease-out, opacity 0.2s ease-out; /* Add opacity transition */
+    left: -100px; /* Start off-screen */
+    top: -100px;
+}
+
+/* Optional: Change cursor appearance on hoverable elements (like links) */
+body a:hover ~ #custom-cursor {
+    width: 25px; /* Make it slightly larger */
+    height: 25px;
+    background-color: rgba(224, 224, 224, 0.2); /* Add a subtle background */
+    /* Consider theming this background color too */
+}
+
+/* Link around initials */
+.initials-link {
+    text-decoration: none;
+    color: inherit; /* Inherit color from .initials */
+}
+
+/* Initials Styling */
+.initials {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--initials-color);
+    /* Adjust margin/padding as needed */
+}
+
+/* Theme Toggle Button */
+#theme-toggle {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 0;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 32px; /* Square size */
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+#theme-toggle:hover {
+    background-color: var(--button-hover-bg);
+}
+
+/* Theme Icons inside button */
+.theme-icon {
+    width: 18px; /* Adjust icon size */
+    height: 18px;
+}
+
+/* Hide one icon based on JS */
+.moon-icon {
+    /* display: none;  Set by JS */
+}
+.sun-icon {
+    /* display: none;  Set by JS */
+    filter: invert(1); /* Invert the colors */
+}
+
+/* Styling for Social Icons */
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icon {
+    display: inline-flex; /* Use flex for centering icon/text if needed */
+    align-items: center;
+    justify-content: center;
+    width: 32px; /* Size of the icon button */
+    height: 32px;
+    border-radius: 50%; /* Circular icons */
+    background-color: var(--button-bg);
+    /* color: var(--button-text); */ /* No longer needed for text */
+    text-decoration: none;
+    /* font-size: 0.8rem; */ /* No longer needed for text */
+    /* font-weight: bold; */ /* No longer needed for text */
+    transition: background-color 0.3s ease;
+    border: 1px solid var(--border-color);
+    padding: 6px; /* Add padding around the image */
+}
+
+/* Style the image inside the social icon link */
+.social-icon img {
+    display: block; /* Remove extra space below image */
+    width: 100%;   /* Make image fill the padded space */
+    height: 100%;
+    object-fit: contain; /* Ensure icon aspect ratio is maintained */
+    transition: filter 0.3s ease; /* Add transition for filter */
+    filter: invert(1); /* Invert by default (dark mode) */
+}
+
+/* Slightly enlarge specific icons if needed */
+.instagram-icon-link img {
+    transform: scale(1.5); /* Make 10% larger */
+}
+
+/* UN-Invert social icons in light mode */
+body.light-mode .social-icon img {
+    /* filter: invert(1); */ /* Old rule - remove */
+    filter: invert(0); /* Or filter: none; */
+}
+
+.social-icon:hover {
+    background-color: var(--button-hover-bg);
+}
+
+/* Styling for Dynamic Info Placeholders */
+.dynamic-info {
+    font-size: 0.9rem;
+    color: var(--link-color);
+    margin-top: 0.5rem;
+}
+
+.dynamic-info p {
+    margin-bottom: 0.3rem;
+}
+
+.dynamic-info .icon {
+    margin-right: 0.5em;
+    /* Consider using SVG icons here too */
+}
+
+/* Experience Section Styling */
+.experience-section {
+    margin-top: 3rem; /* Space above experience boxes */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Space between boxes */
+}
+
+.experience-box {
+    background-color: var(--button-bg); /* Use button background for contrast */
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between; /* Push dates to the right */
+    align-items: center;
+    transition: background-color 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+/* Optional hover effect */
+/* .experience-box:hover {
+    background-color: var(--button-hover-bg);
+} */
+
+.job-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.job-title {
+    font-weight: bold;
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+.company-name {
+    font-size: 0.9rem;
+    color: var(--link-color);
+}
+
+.job-dates {
+    font-size: 0.9rem;
+    color: var(--link-color);
+    text-align: right;
+    white-space: nowrap; /* Prevent dates from wrapping */
+    margin-left: 1rem; /* Ensure space between info and dates */
+}
+
+/* Project Section Styling */
+.project-subheading {
+    font-size: 1.2rem;
+    color: var(--heading-color);
+    margin-top: 2.5rem; /* Space above subheading */
+    margin-bottom: 1rem;
+    text-align: left; /* Align subheadings left */
+    /* border-bottom: 1px solid var(--border-color); */ /* Removed */
+    /* padding-bottom: 0.3rem; */ /* Removed */
+}
+
+/* Align first subheading better */
+#projects h3:first-of-type {
+    margin-top: 1.5rem;
+}
+
+.project-box {
+    background-color: var(--button-bg); /* Use button background for contrast */
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1rem; /* Space between boxes */
+    /* Removed flex display from experience box */
+    text-align: left; /* Align text left within the box */
+    transition: background-color 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.project-info {
+    /* Container for project details */
+}
+
+.project-title {
+    display: block; /* Ensure it takes full width */
+    font-weight: bold;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.project-description {
+    font-size: 0.95rem;
+    color: var(--text-color);
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+}
+
+.project-tech {
+    font-size: 0.85rem;
+    color: var(--link-color); /* Dimmer color for tech used */
+    font-style: italic;
+}
+
+/* Styling for image on About page */
+.about-page-image {
+    display: block; /* Needed for margin auto centering */
+    margin: 1.5rem auto; /* Add vertical space and center horizontally */
+    max-width: 60%; /* Reduced size */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 15px; /* Adjust for desired roundness */
+    border: 1px solid var(--border-color); /* Optional border */
+}
+
+/* Style link within about page paragraph */
+#about p a {
+    color: inherit; /* Use the parent paragraph's text color */
+    /* text-decoration: underline; */ /* Keep default underline or uncomment to enforce */
+}
+
+/* Contact Page Specific Styles */
+.contact-links {
+    margin-top: 2rem; /* Space above buttons */
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* Center buttons horizontally */
+    gap: 1.5rem; /* Adjust space between buttons */
+}
+
+.contact-button {
+    display: inline-flex; /* Align icon and text */
+    align-items: center;
+    justify-content: center;
+    width: 100px; /* Doubled size */
+    height: 100px;
+    border-radius: 50%;
+    background-color: var(--button-bg);
+    text-decoration: none;
+    border: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 20px; /* Increased padding for larger size */
+}
+
+.contact-button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+.contact-button img {
+    width: 100%; /* Let image fill the padded area */
+    height: 100%;
+    object-fit: contain;
+    transition: filter 0.3s ease;
+    filter: invert(1); /* Invert icons in dark mode by default */
+}
+
+/* UN-Invert contact button icons in light mode */
+body.light-mode .contact-button img {
+    filter: invert(0);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 600px) {
+    body {
+        padding: 1rem; /* Reduce body padding */
+    }
+
+    /* Homepage About Section adjustments */
+    .about-layout {
+        gap: 1rem; /* Reduce gap when potentially wrapped */
+    }
+
+    .about-left {
+        text-align: center; /* Center text when stacked */
+        max-width: 100%; /* Allow text block to take full width when stacked */
+        /* Re-center social icons */
+        align-items: center;
+    }
+    
+    .social-links {
+        justify-content: center; /* Center social icons within the .about-left block */
+    }
+    
+    .profile-picture {
+         /* Optionally reduce size further on mobile */
+        /* width: 80px; 
+           height: 80px; */
+        /* margin-top: 0; */ /* Already handled by position static */
+        /* top: 0; */ /* Already handled by position static */
+        position: static; /* Reset position: relative */
+        top: auto; /* Explicitly reset top offset */
+    }
+
+    /* Contact Page Icons adjustments */
+    .contact-links {
+        flex-direction: column; /* Stack vertically */
+        align-items: center; /* Center items horizontally when stacked */
+        gap: 1rem; /* Adjust vertical gap */
+    }
+
+    .contact-button {
+        width: 80px; /* Reduce size slightly */
+        height: 80px;
+        padding: 15px;
+    }
+
+    /* About Page Image adjustments */
+    .about-page-image {
+        max-width: 80%; /* Allow image to be larger relative to small screen */
+    }
+
+    /* Experience/Project Box adjustments */
+    .experience-box,
+    .project-box {
+        padding: 1rem 1.2rem; /* Reduce padding slightly */
+        flex-direction: column; /* Stack job info and dates if needed */
+        align-items: flex-start; /* Align items left when stacked */
+        gap: 0.5rem;
+    }
+
+    .job-dates {
+         text-align: left; /* Align dates left when stacked */
+         margin-left: 0;
+         font-size: 0.8rem; /* Slightly smaller */
+    }
+
+    .project-subheading {
+        text-align: center; /* Center subheadings on mobile */
+    }
+
+    /* Add space above footer on mobile */
+    .experience-section {
+        margin-bottom: 2rem; 
+    }
+} 
