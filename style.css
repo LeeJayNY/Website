@@ -114,7 +114,7 @@ main {
     border: 2px solid var(--border-color); /* Optional border */
     flex-shrink: 0; /* Prevent image from shrinking */
     position: relative; /* Allow nudging with top/bottom/left/right */
-    top: -160px; /* Reset to a smaller value for readjustment */
+    top: -150px; /* Reset to a smaller value for readjustment */
 }
 
 .about-text {

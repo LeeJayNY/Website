@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        let initialTheme = currentTheme || (prefersDarkScheme.matches ? 'dark' : 'light');
+        let initialTheme = currentTheme || 'dark'; // Default to dark if no theme saved
         applyTheme(initialTheme);
 
         themeToggle.addEventListener('click', () => {
