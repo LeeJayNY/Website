@@ -477,6 +477,94 @@ body.light-mode .contact-button img {
     filter: invert(0);
 }
 
+/* Add more space below experience section */
+.experience-section {
+    margin-bottom: 2.5rem;
+}
+
+/* Certifications Section - horizontal layout */
+.certifications-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: stretch;
+    margin-top: 0.5rem;
+}
+
+.cert-box {
+    background-color: var(--button-bg);
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    text-decoration: none;
+    color: var(--text-color);
+    transition: background-color 0.3s, box-shadow 0.3s;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cert-box:hover, .cert-box:focus {
+    background-color: var(--button-hover-bg);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    color: var(--link-hover-color);
+}
+
+.cert-badge {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    border-radius: 6px;
+    background: #fff;
+    border: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.cert-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+}
+
+.cert-title {
+    font-weight: bold;
+    font-size: 1.05rem;
+    margin-bottom: 0.4rem;
+    color: var(--heading-color);
+}
+
+.cert-desc {
+    font-size: 0.92rem;
+    color: var(--text-color);
+    margin-top: 0.1rem;
+    text-align: left;
+}
+
+@media (max-width: 800px) {
+    .cert-box {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.7rem;
+        padding: 1.2rem 0.7rem;
+    }
+    .cert-info {
+        align-items: center;
+    }
+    .cert-desc {
+        text-align: left;
+    }
+    .experience-section {
+        margin-bottom: 1.5rem;
+    }
+}
+
 /* --- Responsive Design --- */
 @media (max-width: 600px) {
     body {
