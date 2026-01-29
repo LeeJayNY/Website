@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .valentine-button {
+            padding: 1.5rem 3rem;
+            font-size: 1.5rem;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .valentine-button:hover {
+            background-color: var(--button-hover-bg);
+        }
+
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-overlay.active {
+            display: flex;
+        }
+
+        .popup-content {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .popup-content h2 {
+            margin-bottom: 1.5rem;
+            color: var(--heading-color);
+        }
+
+        .popup-button {
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .popup-button:hover {
+            background-color: var(--button-hover-bg);
+        }
+
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ff6b9d;
+            animation: confetti-fall linear forwards;
+        }
+
+        .confetti:nth-child(2n) {
+            background-color: #c44569;
+        }
+
+        .confetti:nth-child(3n) {
+            background-color: #f8b500;
+        }
+
+        .confetti:nth-child(4n) {
+            background-color: #ff9ff3;
+        }
+
+        .confetti:nth-child(5n) {
+            background-color: #54a0ff;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff6b9d;
+            animation: heart-fall linear forwards;
+        }
+
+        .heart:nth-child(odd) {
+            color: #ff9ff3;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes heart-fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        .valentine-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        img {
+            display: block;
+            margin: 1rem auto;
+            max-width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                justify-content: center;
+                align-items: center;
+            }
+
+            .valentine-content {
+                width: 100%;
+                padding: 0 1rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+                text-align: center;
+                width: 100%;
+            }
+
+            img {
+                max-width: 90%;
+                height: auto;
+                margin: 1rem auto;
+                display: block;
+            }
+
+            .button-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                width: 100%;
+            }
+
+            .valentine-button {
+                width: 100%;
+                max-width: 280px;
+                padding: 1.2rem 2rem;
+                font-size: 1.2rem;
+            }
+
+            .popup-content {
+                padding: 1.5rem;
+                margin: 1rem;
+                max-width: calc(100% - 2rem);
+            }
+
+            .popup-content h2 {
+                font-size: 1.3rem;
+                margin-bottom: 1rem;
+            }
+
+            .popup-button {
+                width: 100%;
+                padding: 0.875rem 1.5rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    
+    <audio id="yesSound" preload="auto">
+       <source src="sounds/love.mp3" type="audio/mpeg"> 
+    </audio>
+    <audio id="noSound" preload="auto">
+        <source src="sounds/error.mp3" type="audio/mpeg"> 
+    </audio>
+
+    <div class="valentine-content">
+        <h1>Will you be my Valentine?</h1>
+
+        <img src="images/valentine.jpg" alt="Valentine's Day">
+        <div class="button-container">
+            <button class="valentine-button" id="yesButton">Yes</button>
+            <button class="valentine-button" id="noButton">No</button>
+        </div>
+    </div>
+
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <div class="popup-overlay" id="yesPopup">
+        <div class="popup-content">
+            <h2 id="yesPopupTitle">You said Yes!</h2>
+            <img src="images/yippee.gif" alt="Yes">
+            <p id="yesPopupMessage">You made the right choice!</p>
+            <button class="popup-button" onclick="closePopup('yesPopup')">I Love You!</button>
+        </div>
+    </div>
+
+    <div class="popup-overlay" id="popup">
+        <div class="popup-content">
+            <h2>NO!</h2>
+            <button class="popup-button" onclick="closePopup('popup')">Try Again</button>
+        </div>
+    </div>
+    
+    <div class="popup-overlay" id="popup1">
+        <div class="popup-content">
+            <h2>Error: Wrong Answer.</h2>
+            <button class="popup-button" onclick="closePopup('popup1')">Try Again</button>
+        </div>
+    </div>
+
+    <div class="popup-overlay" id="popup2">
+        <div class="popup-content">
+            <h2>Error: Really??</h2>
+            <button class="popup-button" onclick="closePopup('popup2')">Try Again</button>
+        </div>
+    </div>
+
+    <div class="popup-overlay" id="popup3">
+        <div class="popup-content">
+            <h2>Error: Still the wrong answer...</h2>
+            <button class="popup-button" onclick="closePopup('popup3')">Try Again</button>
+        </div>
+    </div>
+    
+    <script>
+        let noClickCount = 0;
+
+        document.getElementById('yesButton').addEventListener('click', function() {
+           
+            const yesSound = document.getElementById('yesSound');
+            if (yesSound && yesSound.readyState >= 2) {
+                yesSound.currentTime = 0;
+                yesSound.play().catch(e => console.log('Sound play failed:', e));
+            }
+
+            createConfettiAndHearts();
+
+            setTimeout(() => {
+                document.getElementById('yesPopup').classList.add('active');
+            }, 500);
+        });
+
+        document.getElementById('noButton').addEventListener('click', function() {
+            // Play sound effect
+            const noSound = document.getElementById('noSound');
+            if (noSound && noSound.readyState >= 2) {
+                noSound.currentTime = 0;
+                noSound.play().catch(e => console.log('Sound play failed:', e));
+            }
+
+            noClickCount++;
+            if (noClickCount === 1) {
+                document.getElementById('popup1').classList.add('active');
+            } else if (noClickCount === 2) {
+                document.getElementById('popup2').classList.add('active');   
+            }
+            else if (noClickCount === 3) {
+                document.getElementById('popup3').classList.add('active');
+            }
+            else{
+            document.getElementById('popup').classList.add('active');
+            }
+        });
+
+        function closePopup(popupId) {
+            document.getElementById(popupId).classList.remove('active');
+
+            if (popupId === 'yesPopup') {
+             const yesSound = document.getElementById('yesSound');
+            if (yesSound) {
+                yesSound.pause();        // stop playback
+                yesSound.currentTime = 0; // rewind to start
+                }
+            }
+        }
+
+        function createConfettiAndHearts() {
+            const container = document.getElementById('confettiContainer');
+            const colors = ['#ff6b9d', '#c44569', '#f8b500', '#ff9ff3', '#54a0ff'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                container.appendChild(confetti);
+
+                setTimeout(() => {
+                    confetti.remove();
+                }, 10000);
+            }
+
+            for (let i = 0; i < 30; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                heart.style.animationDelay = Math.random() * 0.5 + 's';
+                heart.style.fontSize = (Math.random() * 15 + 15) + 'px';
+                container.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 10000);
+            }
+        }
+    </script>
+</body>
+</html>
+
