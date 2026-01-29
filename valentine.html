@@ -280,6 +280,7 @@
     
     <script>
         let noClickCount = 0;
+        let confettiLoopId = null;
 
         document.getElementById('yesButton').addEventListener('click', function() {
            
@@ -324,8 +325,8 @@
             if (popupId === 'yesPopup') {
              const yesSound = document.getElementById('yesSound');
             if (yesSound) {
-                yesSound.pause();        // stop playback
-                yesSound.currentTime = 0; // rewind to start
+                yesSound.pause();
+                yesSound.currentTime = 0;
                 }
 
             const questionText = document.getElementById('questionText');
@@ -343,14 +344,26 @@
             if (buttonContainer) {
                 buttonContainer.style.display = 'none';
             }
+
+            startConfettiAndHeartsLoop();
             }
         }
 
-        function createConfettiAndHearts() {
+        function startConfettiAndHeartsLoop() {
+            if (confettiLoopId !== null) return;
+
+            confettiLoopId = setInterval(() => {
+                createConfettiAndHearts(10, 6);
+            }, 600);
+        }
+
+        function createConfettiAndHearts(confettiCount = 50, heartCount = 30) {
             const container = document.getElementById('confettiContainer');
             const colors = ['#ff6b9d', '#c44569', '#f8b500', '#ff9ff3', '#54a0ff'];
             
-            for (let i = 0; i < 50; i++) {
+            if (!container) return;
+
+            for (let i = 0; i < confettiCount; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
                 confetti.style.left = Math.random() * 100 + '%';
@@ -364,7 +377,7 @@
                 }, 10000);
             }
 
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < heartCount; i++) {
                 const heart = document.createElement('div');
                 heart.className = 'heart';
                 heart.textContent = '❤️';
