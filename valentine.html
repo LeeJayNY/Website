@@ -230,9 +230,9 @@
     </audio>
 
     <div class="valentine-content">
-        <h1>Will you be my Valentine?</h1>
+        <h1 id="questionText">Will you be my Valentine?</h1>
 
-        <img src="images/valentine.jpg" alt="Valentine's Day">
+        <img id="mainImage" src="images/valentine.jpg" alt="Valentine's Day">
         <div class="button-container">
             <button class="valentine-button" id="yesButton">Yes</button>
             <button class="valentine-button" id="noButton">No</button>
@@ -266,7 +266,7 @@
 
     <div class="popup-overlay" id="popup2">
         <div class="popup-content">
-            <h2>Really??</h2>
+            <h2>Really?? C'mon Babe...</h2>
             <button class="popup-button" onclick="closePopup('popup2')">Try Again</button>
         </div>
     </div>
@@ -327,6 +327,22 @@
                 yesSound.pause();        // stop playback
                 yesSound.currentTime = 0; // rewind to start
                 }
+
+            const questionText = document.getElementById('questionText');
+            if (questionText) {
+                questionText.textContent = "Yay! Love you Babe!";
+            }
+
+            const mainImage = document.getElementById('mainImage');
+            if (mainImage) {
+                mainImage.src = "images/heart.gif";
+                mainImage.alt = "Yippee!";
+            }
+
+            const buttonContainer = document.querySelector('.button-container');
+            if (buttonContainer) {
+                buttonContainer.style.display = 'none';
+            }
             }
         }
 
