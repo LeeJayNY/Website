@@ -284,7 +284,7 @@
         document.getElementById('yesButton').addEventListener('click', function() {
            
             const yesSound = document.getElementById('yesSound');
-            if (yesSound && yesSound.readyState >= 2) {
+            if (yesSound) {
                 yesSound.currentTime = 0;
                 yesSound.play().catch(e => console.log('Sound play failed:', e));
             }
@@ -299,7 +299,7 @@
         document.getElementById('noButton').addEventListener('click', function() {
             // Play sound effect
             const noSound = document.getElementById('noSound');
-            if (noSound && noSound.readyState >= 2) {
+            if (noSound) {
                 noSound.currentTime = 0;
                 noSound.play().catch(e => console.log('Sound play failed:', e));
             }
